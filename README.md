@@ -13,7 +13,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-Music::Engine is a real-time music gerenation framwork. It provides a convienient way to create adaptive musical systems.
+Music::Engine is a real-time music generation framework. It provides a convenient way to create adaptive musical systems.
 
 AUTHOR
 ======
