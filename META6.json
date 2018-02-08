@@ -15,6 +15,7 @@
   "provides" : {
     "Music::Engine" : "lib/Music/Engine.pm6",
     "Music::Engine::Conductor" : "lib/Music/Engine/Conductor.pm6",
+    "Music::Engine::CounterPoint" : "lib/Music/Engine/CounterPoint.pm6",
     "Music::Engine::Generator::CurveMD" : "lib/Music/Engine/Generator/CurveMD.pm6",
     "Music::Engine::Section" : "lib/Music/Engine/Section.pm6",
     "Music::Engine::Section::Context" : "lib/Music/Engine/Section/Context.pm6"
