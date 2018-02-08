@@ -1,5 +1,5 @@
 use v6.c;
-unit class Music::Engine:ver<0.0.1>;
+unit class Music::Engine:ver<0.0.2>;
 
 
 =begin pod

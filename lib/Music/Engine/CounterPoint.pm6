@@ -2,18 +2,18 @@ use v6;
 
 unit class Music::Engine::CounterPoint;
 
-use Generator::CurveMD;
+use Music::Engine::Generator::CurveMD;
 use ScaleVec;
-use Scale::Fence;
-use ScaleStack;
+use ScaleVec::Scale::Fence;
+use ScaleVec::Scale::Stack;
 
 has ScaleVec $.chromatic = ScaleVec.new( :vector(0..12) );
 has Numeric $.max-range = 15;
 has Callable $.on-phrase-start;
 
 # lazy
-has Scale::Fence $!class-space;
-method class-space( --> Scale::Fence ) {
+has ScaleVec::Scale::Fence $!class-space;
+method class-space( --> ScaleVec::Scale::Fence ) {
   return $!class-space if $!class-space.defined;
   $!class-space .= new(
     :repeat-interval($!chromatic.repeat-interval)
@@ -27,12 +27,12 @@ has ScaleVec $.tonal-space = ScaleVec.new( :vector(0, 2, 4, 5, 7, 9, 11, 12) );
 method update-tonal-space(ScaleVec:D $new-space) {
   $!tonal-space = $new-space;
   #clear $!pitch-space so it can be rebuilt
-  $!pitch-space = ScaleStack;
+  $!pitch-space = ScaleVec::Scale::Stack;
 }
 
 # lazy
-has ScaleStack $!pitch-space;
-method pitch-space( --> ScaleStack ) {
+has ScaleVec::Scale::Stack $!pitch-space;
+method pitch-space( --> ScaleVec::Scale::Stack ) {
   return $!pitch-space if $!pitch-space.defined;
   $!pitch-space .= new( :scales($!tonal-space, $!chromatic) );
 }
@@ -43,7 +43,7 @@ has Set $.imperfect-consonants  = Set(3, 4, 8, 9);
 
 our enum IntervalQaulity<perfect-consonant imperfect-consonant disonant>;
 
-has Generator::CurveMD $!contour handles<reset-steps, steps> = Generator::CurveMD.new(
+has Music::Engine::Generator::CurveMD $!contour handles<reset-steps, steps> = Music::Engine::Generator::CurveMD.new(
   :curve-current(12, -12)
   :curve-target(8, -8)
   :steps(8)
